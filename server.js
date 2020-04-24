@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 const ROUTER = express.Router();
 const USERROUTES = require('./routes/user');
@@ -25,10 +26,11 @@ mongoose.connection.on('connected', () => {
 
 
 //HTTP request logger
-app.use(morgan('tiny'));
+//app.use(morgan('tiny'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-//app.use(USERROUTES, ROUTER);
+app.use(USERROUTES, ROUTER);
 app.use('/', routes);
 
 /* app.get('/', (req, res) => {

@@ -12,8 +12,8 @@ USERROUTES.route('/api/user/register').post(function (req, res) {
             } else {
                 let newUser = new USER({
                     email: req.body.email,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
+                    first_name: req.body.firstname,
+                    last_name: req.body.lastname,
                     password: req.body.password,
                     fb: false,
                     li: false,

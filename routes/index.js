@@ -44,7 +44,8 @@ router.get('/users', async (req, res) => {
         const users = await User.find({});
 
         return res.json({
-            users
+            registered: true,
+            users: users
         });
     } catch (error) {
         return res.status(500).json({

@@ -10,7 +10,11 @@ class Register extends Component {
             firstname: '',
             lastname: '',
             email: '',
-            password: ''
+            password: '',
+            fb: false,
+            tw: false,
+            li: false,
+            ig: false
         }
     }
     handleChange = e => {
@@ -21,12 +25,12 @@ class Register extends Component {
 
     submit = e => {
         e.preventDefault();
-        const { firstname, lastname, email, password } = this.state;
-        axios({
+        const { firstname, lastname, email, password, fb, li, tw, ig } = this.state;
+        /* axios({
             url: '/add',
             method: 'POST',
             data: {
-                firstname, lastname, email, password
+                firstname, lastname, email, password, fb, li, tw, ig
             }
         }).then(response => {
             this.props.addUser(response.data);
@@ -36,25 +40,25 @@ class Register extends Component {
                 email: '',
                 password: ''
             });
-        }).catch(() => alert('Failed uploading data'))
+        }).catch(() => alert('Failed uploading data')) */
 
-        /*  app.post('api/user/register', {
-             email: email,
-             firstname: firstname,
-             lastname: lastname,
-             password: password
-         })
-             .then(response => {
-                 if (response.data.registered) {
-                     document.location.href = "/login";
-                 } else {
-                     alert('Something went wrong')
-                 }
-             }).catch(err => {
-                 console.log(err);
-             }
- 
-             ) */
+        app.post('api/user/register', {
+            email: email,
+            firstname: firstname,
+            lastname: lastname,
+            password: password
+        })
+            .then(response => {
+                if (response.data.registered) {
+                    document.location.href = "/login";
+                } else {
+                    alert('Something went wrong')
+                }
+            }).catch(err => {
+                console.log(err);
+            }
+
+            )
     };
 
     render() {
@@ -101,7 +105,7 @@ class Register extends Component {
                                 <Form.Control size="sm" type="password" placeholder="Password" style={{ width: "300px" }} />
                             </Form.Group>
 
-                            <Button variant="outline-dark" type="submit" href="/home" style={{ borderWidth: "2px" }}>
+                            <Button variant="outline-dark" type="submit" style={{ borderWidth: "2px" }}>
                                 <strong>Submit</strong>
                             </Button>
                         </Form>
