@@ -65,11 +65,7 @@ class Home extends Component {
                     }} /></Nav.Link>
             )
         }
-        else {
-            /* buttonarray.push(
-                <Nav.Link key="fb-k" disabled style={{ width: "100%", padding: "0" }}><img src={require('../images/fbgray.jpg')} alt=" " style={{ padding: "0 0", width: "96px", border: "2px solid gray" }} /></Nav.Link>
-            ) */
-        }
+
         if (a.twitter === true) {
             buttonarray.push(
                 <Nav.Link onClick={(e) => this.handleInput(e, "twitter")} style={{ width: "100%", padding: "0" }}><img src={require('../images/twitter.jpg')} alt=" "
@@ -80,11 +76,6 @@ class Home extends Component {
                         borderRadius: "20px"
                     }} /></Nav.Link>
             )
-        }
-        else {
-            // buttonarray.push(
-            //     <Nav.Link key="tw-k" disabled style={{ width: "100%", padding: "0" }}><img src={require('../images/twittergray.jpg')} alt=" " style={{ padding: "0 0", width: "96px", border: "2px solid gray" }} /></Nav.Link>
-            // )
         }
 
         if (a.linkedin === true) {
@@ -98,11 +89,6 @@ class Home extends Component {
                     }} /></Nav.Link>
             )
         }
-        else {
-            /* buttonarray.push(
-                <Nav.Link key="li-k" disabled style={{ width: "100%", padding: "0" }}><img src={require('../images/linkedingray.jpg')} alt=" " style={{ padding: "0 0", width: "96px", border: "2px solid gray" }} /></Nav.Link>
-            ) */
-        }
 
         if (a.instagram === true) {
             buttonarray.push(
@@ -114,11 +100,6 @@ class Home extends Component {
                         borderRadius: "20px"
                     }} /></Nav.Link>
             )
-        }
-        else {
-            /*  buttonarray.push(
-                 <Nav.Link key="ig-k" disabled style={{ width: "100%", padding: "0" }}><img src={require('../images/instagray.jpeg')} alt=" " style={{ padding: "0 0", width: "96px", border: "2px solid gray" }} /></Nav.Link>
-             ) */
         }
 
 
