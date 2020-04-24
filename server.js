@@ -25,10 +25,10 @@ mongoose.connection.on('connected', () => {
 
 
 //HTTP request logger
-//app.use(morgan('tiny'));
+app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(USERROUTES, ROUTER);
+//app.use(USERROUTES, ROUTER);
 app.use('/', routes);
 
 /* app.get('/', (req, res) => {
