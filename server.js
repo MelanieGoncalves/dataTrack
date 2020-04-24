@@ -11,9 +11,9 @@ const USERROUTES = require('./routes/user');
 
 const routes = require('./routes');
 
-const MONGODB_URI = require('./config_uri.js').mongoURI;
+//const MONGODB_URI = require('./config_uri.js').mongoURI;
 
-mongoose.connect(MONGODB_URI || 'mongodb://localhost/dataTrack_db', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/dataTrack_db', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -29,7 +29,7 @@ app.use(morgan('tiny'));
 app.use(USERROUTES, ROUTER);
 app.use('/', routes);
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
     const data = {
         username: 'melaniedfg',
         age: 29
@@ -44,7 +44,7 @@ app.get('/api/name', (req, res) => {
 
     }
     res.json(data);
-});
+}); */
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
