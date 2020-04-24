@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from './components/Form';
 import DisplayUsers from './components/DisplayUsers';
 import axios from 'axios';
+import TopNavBar from './components/TopNavBar.js'
 import './App.css';
 class App extends Component {
   state = {
@@ -30,9 +31,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Form addUser={this.addUser} />
-        < DisplayUsers users={this.state.users} />
+      <div className="App" style={{ height: "100%" }}>
+        <TopNavBar />
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossOrigin="anonymous"
+        />
+        <p className="App-intro">{this.state.apiResponse}</p>
+
+
+
 
       </div>
     );
