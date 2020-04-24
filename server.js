@@ -29,7 +29,7 @@ app.use(morgan('tiny'));
 app.use(USERROUTES, ROUTER);
 app.use('/', routes);
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     const data = {
         username: 'melaniedfg',
         age: 29
