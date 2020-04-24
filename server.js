@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 const ROUTER = express.Router();
 const USERROUTES = require('./routes/user');
 
-const routes = require('./routes');
+//const routes = require('./routes');
 
 //const MONGODB_URI = require('./config_uri.js').mongoURI;
 
@@ -27,7 +27,7 @@ mongoose.connection.on('connected', () => {
 //HTTP request logger
 app.use(morgan('tiny'));
 app.use(USERROUTES, ROUTER);
-app.use('/', routes);
+//app.use('/', routes);
 
 /* app.get('/', (req, res) => {
     const data = {
