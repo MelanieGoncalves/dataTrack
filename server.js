@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 8080;
 const ROUTER = express.Router();
 const USERROUTES = require('./routes/user');
 
+const routes = require('./routes');
+
 const MONGODB_URI = require('./config_uri.js').mongoURI;
 
 mongoose.connect(MONGODB_URI || 'mongodb://localhost/dataTrack_db', {
@@ -25,6 +27,7 @@ mongoose.connection.on('connected', () => {
 //HTTP request logger
 app.use(morgan('tiny'));
 app.use(USERROUTES, ROUTER);
+app.use('/', routes);
 
 app.get('/api', (req, res) => {
     const data = {
