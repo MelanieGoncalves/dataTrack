@@ -6,6 +6,10 @@ const userSchema = new Schema({
     last_name: String,
     email: String,
     password: String,
+    fb: Boolean,
+    tw: Boolean,
+    li: Boolean,
+    ig: Boolean,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
 })

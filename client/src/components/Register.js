@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
+import { app } from '../utils/AxiosConfig';
 import axios from 'axios';
 
 class Register extends Component {
@@ -36,6 +37,24 @@ class Register extends Component {
                 password: ''
             });
         }).catch(() => alert('Failed uploading data'))
+
+        /*  app.post('api/user/register', {
+             email: email,
+             firstname: firstname,
+             lastname: lastname,
+             password: password
+         })
+             .then(response => {
+                 if (response.data.registered) {
+                     document.location.href = "/login";
+                 } else {
+                     alert('Something went wrong')
+                 }
+             }).catch(err => {
+                 console.log(err);
+             }
+ 
+             ) */
     };
 
     render() {
@@ -88,7 +107,7 @@ class Register extends Component {
                         </Form>
 
                     </Card.Body>
-                    <Card.Link style={{ color: "white" }} href="/login">Already Registered?</Card.Link>
+                    <Card.Link style={{ color: "white" }} >Already Registered?</Card.Link>
                 </Card>
             </div>
         );

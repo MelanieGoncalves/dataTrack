@@ -10,13 +10,14 @@ router.post('/add', async (req, res) => {
             statusCode: 403
         });
     }
-    const { name, position, company } = req.body;
+    const { firstname, lastname, email, password } = req.body;
 
     const newUser = new User({
-        position,
-        name,
-        company,
-        date: Date.now()
+        firstname,
+        lastname,
+        email,
+        password,
+        fb, li, tw, ig
     });
     try {
         await newUser.save();

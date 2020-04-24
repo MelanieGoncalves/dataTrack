@@ -2,7 +2,7 @@ const EXPRESS = require('express');
 const USERROUTES = EXPRESS.Router();
 const USER = require('../models/user.model');
 
-USERROUTES.route('/user/register').post(function (req, res) {
+USERROUTES.route('/api/user/register').post(function (req, res) {
     USER.findOne({ email: req.body.email })
         .then(user => {
             if (user != null) {
@@ -11,11 +11,14 @@ USERROUTES.route('/user/register').post(function (req, res) {
                 })
             } else {
                 let newUser = new USER({
-                    email: 'test@test.com',
-                    first_name: 'Test',
-                    last_name: 'Testington',
-                    password: '123testing',
-
+                    email: req.body.email,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    password: req.body.password,
+                    fb: false,
+                    li: false,
+                    tw: false,
+                    ig: false
                 });
 
                 newUser.save().then(saved => {
@@ -35,5 +38,13 @@ USERROUTES.route('/user/register').post(function (req, res) {
         });
 });
 
-
+USERROUTES.route("/api/users").get(function (req, res) {
+    USER.find(function (err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(user);
+        }
+    });
+});
 module.exports = USERROUTES;
