@@ -22,15 +22,15 @@ USERROUTES.route('/api/user/register').post(function (req, res) {
                     ig: false
                 });
 
-                req.session.user = newUser;
-                req.session.isLoggedIn = true;
+                //   req.session.user = newUser;
+                //   req.session.isLoggedIn = true;
 
                 newUser.save().then(saved => {
                     if (saved != null) {
                         console.log('User has been saved!');
 
                         //  console.log(JSON.stringify(req.session.user));
-                        req.session.save();
+                        //    req.session.save();
                         res.status(200).json({
                             registered: true
                         })
@@ -58,9 +58,9 @@ USERROUTES.post('/api/login', function (req, res) {
                 console.log('Error');
             } else {
                 if (req.body.password === user.password) {
-                    req.session.userid = user._id;
-                    req.session.save();
-                    console.log(req.session.userid);
+                    //   req.session.userid = user._id;
+                    //   req.session.save();
+                    //   console.log(req.session.userid);
                     res.status(200).json({
                         registered: true,
                         user: user
@@ -74,7 +74,7 @@ USERROUTES.post('/api/login', function (req, res) {
 
 // GET one user
 USERROUTES.route("/api/user/:id").get(function (req, res) {
-    console.log("??: " + JSON.stringify(req.session));
+    //  console.log("??: " + JSON.stringify(req.session));
     //  if (req.session && req.session.userid) {
     //     console.log("id: " + req.session.user);
     USER.findOne({ _id: req.params.id })
