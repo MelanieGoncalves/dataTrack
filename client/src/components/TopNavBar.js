@@ -71,7 +71,7 @@ class TopNavBar extends Component {
                                 color: "white", textShadow: "1.5px 1.5px #b3ab12",
                                 fontSize: "xx-large"
 
-                            }}>PROTOTYPE.ONE</NavLink>
+                            }}>dataTrack</NavLink>
 
                             <NavbarToggler onClick={this.toggle} />
                             <Collapse isOpen={this.state.isOpen} navbar>
