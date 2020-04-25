@@ -1,5 +1,6 @@
 //Import npm packages
 const express = require('express');
+const session = require('express-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
@@ -23,39 +24,36 @@ mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!');
 })
 
-
+var sess = {
+    /* genid: function (req) {
+        return genuuid() // use UUIDs for session IDs
+    }, */
+    secret: 'secretsecret',
+    resave: true,
+    saveUninitialized: true
+}
 
 //HTTP request logger
 //app.use(morgan('tiny'));
+app.use(session(sess));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(USERROUTES, ROUTER);
-app.use('/', routes);
 
-/* app.get('/', (req, res) => {
-    const data = {
-        username: 'melaniedfg',
-        age: 29
-    }
-    res.json(data);
-});
 
-app.get('/api/name', (req, res) => {
-    const data = {
-        username: 'franklin',
-        age: 29
-
-    }
-    res.json(data);
-}); */
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, './client/build')));
 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-    })
+    });
+    app.set('trust proxy', 1);
+    sess.cookie.secure = true;
 }
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
+
+module.exports = app;

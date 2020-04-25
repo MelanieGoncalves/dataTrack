@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
 import { app } from '../utils/AxiosConfig';
-import axios from 'axios';
+
 
 class Register extends Component {
     constructor(props) {
@@ -49,8 +49,9 @@ class Register extends Component {
             password: password
         })
             .then(response => {
+                console.log(response);
                 if (response.data.registered) {
-                    document.location.href = "/login";
+                    window.location = '/login'
                 } else {
                     alert('Something went wrong')
                 }

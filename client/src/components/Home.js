@@ -3,6 +3,8 @@ import { Nav, Button, Dropdown, Alert } from 'react-bootstrap';
 import { Tooltip } from 'reactstrap';
 import AddAccounts from './AddAccounts';
 import Background from '../images/bgfade.jpg';
+import { app } from '../utils/AxiosConfig';
+
 
 class Home extends Component {
     constructor(props) {
@@ -10,7 +12,18 @@ class Home extends Component {
         this.state = {
             addAccountShow: false,
             isOpen: false,
-            user: null,
+            user: {
+                email: " ",
+                fb: false,
+                first_name: " ",
+                ig: false,
+                last_name: " ",
+                li: false,
+                password: " ",
+                tw: false,
+                __v: 0,
+                _id: " "
+            },
             accounts: {
                 facebook: false,
                 twitter: false,
@@ -27,7 +40,7 @@ class Home extends Component {
 
 
     async componentDidMount() {
-        let u = await JSON.parse(localStorage.getItem("user"));
+        /* let u = await JSON.parse(localStorage.getItem("user"));
         let a = await JSON.parse(localStorage.getItem("accounts"));
         let b = await this.showButtons(a);
         await this.setState({
@@ -38,7 +51,28 @@ class Home extends Component {
 
         if (a.facebook == false && a.twitter == false && a.linkedin == false && a.instagram == false) {
             this.setState({ tip: true });
-        }
+        } */
+
+        let urlparser = require('url');
+        console.log(window.location.href);
+        let url = urlparser.parse(window.location.href, true);
+        let userid = url.path.substr(6);
+
+        app.get('api/user/' + userid)
+            .then(user => {
+                console.log(user);
+                this.setState({
+                    user: user.data.user,
+                    accounts: {
+                        facebook: user.data.user.fb,
+                        twitter: user.data.user.tw,
+                        linkedin: user.data.user.li,
+                        instagram: user.data.user.ig
+                    }
+                });
+            }).catch(err => {
+                console.log(err);
+            })
 
     }
 
@@ -138,7 +172,7 @@ class Home extends Component {
                     width: "100%"
                 }}>
                     <div style={{ display: "flex" }}>
-                        <h1 style={{ color: "black", fontFamily: "Calibri", textShadow: "2px 2px #b3ab12", float: "left" }}>WELCOME, FIRST-NAME</h1>
+                        <h1 style={{ color: "black", fontFamily: "Calibri", textShadow: "2px 2px #b3ab12", float: "left" }}>WELCOME, {this.state.user.first_name}</h1>
 
                     </div>
                     <Alert variant="dark" show={this.state.tip} style={{ width: "350px", height: "40px", padding: "5px" }}>CLICK THE BUTTON TO ADD AN ACCOUNT</Alert>

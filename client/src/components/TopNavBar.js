@@ -91,6 +91,7 @@ class TopNavBar extends Component {
                         <Route path="/homeExpanded">
                             <HomeExpanded />
                         </Route>
+                        <Route path="/home/:id" exact component={Home}></Route>
                         <Route path="/about">
                             <About />
                         </Route>
