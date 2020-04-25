@@ -39,7 +39,7 @@ app.use(session(sess));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-
+app.use('/', routes);
 app.use(USERROUTES, ROUTER);
 
 

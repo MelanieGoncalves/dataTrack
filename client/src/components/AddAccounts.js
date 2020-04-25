@@ -1,9 +1,53 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { app } from '../utils/AxiosConfig';
 
 class AddAccounts extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            user: {
+                email: " ",
+                fb: false,
+                first_name: " ",
+                ig: false,
+                last_name: " ",
+                li: false,
+                password: " ",
+                tw: false,
+                __v: 0,
+                _id: " "
+            },
+            accounts: {
+                facebook: false,
+                twitter: false,
+                linkedin: false,
+                instagram: false
+            },
+        }
+    }
+
+    componentDidMount() {
+        let urlparser = require('url');
+        console.log(window.location.href);
+        let url = urlparser.parse(window.location.href, true);
+        let userid = url.path.substr(6);
+
+        app.get('api/user/' + userid)
+            .then(user => {
+                console.log(user);
+                this.setState({
+                    user: user.data.user,
+                    accounts: {
+                        facebook: user.data.user.fb,
+                        twitter: user.data.user.tw,
+                        linkedin: user.data.user.li,
+                        instagram: user.data.user.ig
+                    }
+                });
+            }).catch(err => {
+                console.log(err);
+            })
     }
 
     addFB() {
