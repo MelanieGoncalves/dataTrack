@@ -24,18 +24,18 @@ mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!');
 })
 
-var sess = {
+/* var sess = {
     /* genid: function (req) {
         return genuuid() // use UUIDs for session IDs
-    }, */
+    }, 
     secret: 'secretsecret',
     resave: true,
     saveUninitialized: true
-}
+} */
 
 //HTTP request logger
 //app.use(morgan('tiny'));
-app.use(session(sess));
+//app.use(session(sess));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -50,7 +50,7 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
     });
     app.set('trust proxy', 1);
-    sess.cookie.secure = true;
+    //  sess.cookie.secure = true;
 }
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
