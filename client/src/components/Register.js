@@ -46,7 +46,11 @@ class Register extends Component {
             email: email,
             firstname: firstname,
             lastname: lastname,
-            password: password
+            password: password,
+            fb: fb,
+            tw: tw,
+            li: li,
+            ig: ig
         })
             .then(response => {
                 console.log(response);
