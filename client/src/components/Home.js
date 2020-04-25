@@ -153,7 +153,8 @@ class Home extends Component {
         return (
             <div style={{
                 display: "flex",
-                height: "90%"
+                height: "90%",
+                backgroundColor: "rgb(255,250,240)"
             }}>
                 <Nav defaultActiveKey="/home" sticky="left" className="flex-column" variant="pills" style={{ width: "100px", height: "100%", backgroundColor: "rgb(119,126,82)" }}>
 
@@ -162,14 +163,14 @@ class Home extends Component {
                 </Nav>
                 <div style={{
                     padding: "20px", display: "flex", flexDirection: "column",
-                    backgroundImage: `url(${Background})`,
+                    /* backgroundImage: `url(${Background})`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "cover",
                     backgroundAttachment: "fixed",
                     backgroundBlendMode: "lighten",
                     backgroundSize: "100%",
                     overflow: "auto",
-                    width: "100%"
+                    width: "100%" */
                 }}>
                     <div style={{ display: "flex" }}>
                         <h1 style={{ color: "black", fontFamily: "Calibri", textShadow: "2px 2px #b3ab12", float: "left" }}>WELCOME, {this.state.user.first_name}</h1>
@@ -181,7 +182,7 @@ class Home extends Component {
                         width: "80px",
                         height: "80px",
                         backgroundColor: "rgb(255,240,207)",
-                        boxShadow: "8px 8px 50px #000",
+                        boxShadow: "8px 8px 10px #000",
                         borderWidth: "2px",
                         fontSize: "xxx-large",
                         padding: "0",
