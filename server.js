@@ -39,9 +39,8 @@ app.use(session(sess));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use('/', routes);
 app.use(USERROUTES, ROUTER);
-
+app.use('/', routes);
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -56,4 +55,4 @@ if (process.env.NODE_ENV === 'production') {
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
 
-module.exports = app;
+//module.exports = app;
