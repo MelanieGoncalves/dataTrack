@@ -6,5 +6,5 @@ export const app = axios.create({
     baseURL:
         env === 'production'
             ? process.env.PORT //production
-            : 'http://localhost:8080/api/', //development
+            : 'http://localhost:8080/', //development
 });

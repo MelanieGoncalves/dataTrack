@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Nav, Button, NavItem, NavLink } from 'react-bootstrap';
 import { Collapse, Card } from 'reactstrap';
 import AddAccounts from './AddAccounts';
-import Background from '../images/bgfade.jpg';
+import { app } from '../utils/AxiosConfig';
 
 class Home extends Component {
     constructor(props) {
@@ -31,21 +31,39 @@ class Home extends Component {
     }
 
     async componentDidMount() {
-        let u = await JSON.parse(localStorage.getItem("user"));
-        let a = await JSON.parse(localStorage.getItem("accounts"));
-        let b = await this.showButtons(a);
-        //let g = [];
-        /* if (JSON.parse(localStorage.getItem('graphs')).graphs != null) {
-            g = await JSON.parse(localStorage.getItem('graphs')).graphs;
-        } */
-        await this.setState({
-            user: u,
-            accounts: a,
-            selected: localStorage.getItem('selected'),
-            // graphs: g
-        });
-        await this.setState({ buttons: b });
-
+        /*  let u = await JSON.parse(localStorage.getItem("user"));
+         let a = await JSON.parse(localStorage.getItem("accounts"));
+         let b = await this.showButtons(a);
+         //let g = [];
+         /* if (JSON.parse(localStorage.getItem('graphs')).graphs != null) {
+             g = await JSON.parse(localStorage.getItem('graphs')).graphs;
+         } 
+         await this.setState({
+             user: u,
+             accounts: a,
+             selected: localStorage.getItem('selected'),
+             // graphs: g
+         });
+         await this.setState({ buttons: b }); */
+        let userid = JSON.parse(localStorage.getItem('user'))._id;
+        console.log('api/user/' + userid);
+        app.get('api/user/' + userid)
+            .then(user => {
+                console.log(user);
+                this.setState({
+                    user: user.data.user,
+                    accounts: {
+                        facebook: user.data.user.fb,
+                        twitter: user.data.user.tw,
+                        linkedin: user.data.user.li,
+                        instagram: user.data.user.ig
+                    },
+                    buttons: this.showButtons(user.data.user),
+                    selected: localStorage.getItem('selected'),
+                });
+            }).catch(err => {
+                console.log(err);
+            })
     }
 
     toggle = () => {
@@ -244,7 +262,7 @@ class Home extends Component {
     render() {
         let addAccountClose = () => this.setState({ addAccountShow: false });
         return (
-            <div style={{ display: "flex", height: "90%" }}>
+            <div style={{ display: "flex", height: "90%", backgroundColor: "rgb(255,250,240)" }}>
                 <Nav defaultActiveKey="/home" sticky="left" className="flex-column" style={{ width: "100px", height: "100%", backgroundColor: "rgb(119,126,82)" }}>
 
                     <div>{this.state.buttons}</div>
@@ -252,7 +270,6 @@ class Home extends Component {
                 </Nav>
                 <div style={{
                     display: "flex",
-                    backgroundImage: `url(${Background})`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "cover",
                     backgroundAttachment: "fixed",

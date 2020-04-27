@@ -32,7 +32,7 @@ class AddAccounts extends Component {
         let userid = JSON.parse(localStorage.getItem('user'))._id;
         console.log(userid);
 
-        app.get('user/' + userid)
+        app.get('api/user/' + userid)
             .then(user => {
                 console.log(user);
                 this.setState({
@@ -67,7 +67,7 @@ class AddAccounts extends Component {
             ig: this.state.ig
         }
 
-        app.put('accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
+        app.put('api/accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
             .then(response => {
                 console.log(response);
             }).catch(err => {
@@ -86,7 +86,7 @@ class AddAccounts extends Component {
             li: this.state.li,
             ig: this.state.ig
         }
-        app.put('accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
+        app.put('api/accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
             .then(response => {
                 console.log(response);
             }).catch(err => {
@@ -105,7 +105,7 @@ class AddAccounts extends Component {
             li: true,
             ig: this.state.ig
         }
-        app.put('accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
+        app.put('api/accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
             .then(response => {
                 console.log(response);
             }).catch(err => {
@@ -124,7 +124,7 @@ class AddAccounts extends Component {
             li: this.state.li,
             ig: true
         }
-        app.put('accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
+        app.put('api/accounts/' + JSON.parse(localStorage.getItem('user'))._id, accounts)
             .then(response => {
                 console.log(response);
             }).catch(err => {

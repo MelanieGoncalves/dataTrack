@@ -57,7 +57,7 @@ class Home extends Component {
         let url = urlparser.parse(window.location.href, true); */
         let userid = JSON.parse(localStorage.getItem('user'))._id;
         console.log('api/user/' + userid);
-        app.get('user/' + userid)
+        app.get('api/user/' + userid)
             .then(user => {
                 console.log(user);
                 this.setState({
