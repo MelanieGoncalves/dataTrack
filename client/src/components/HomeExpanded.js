@@ -58,8 +58,9 @@ class Home extends Component {
                         linkedin: user.data.user.li,
                         instagram: user.data.user.ig
                     },
-                    buttons: this.showButtons(user.data.user),
                     selected: localStorage.getItem('selected'),
+                    buttons: this.showButtons(user.data.user),
+
                 });
             }).catch(err => {
                 console.log(err);
@@ -103,9 +104,10 @@ class Home extends Component {
     }
 
     showButtons(a) {
+        console.log(a);
         let buttonarray = [];
 
-        if (a.facebook === true) {
+        if (a.fb === true) {
             if (localStorage.getItem('selected') === 'facebook') {
                 buttonarray.push(
                     <Nav.Link key="fb-a" href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/fblogo.jpg')} alt=" "
@@ -131,7 +133,8 @@ class Home extends Component {
 
         }
 
-        if (a.twitter === true) {
+        if (a.tw === true) {
+            console.log(localStorage.getItem('selected'));
             if (localStorage.getItem('selected') === 'twitter') {
                 buttonarray.push(
                     <Nav.Link href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/twitter.jpg')} alt=" "
@@ -157,7 +160,7 @@ class Home extends Component {
         }
 
 
-        if (a.linkedin === true) {
+        if (a.li === true) {
             if (localStorage.getItem('selected') === 'linkedin') {
                 buttonarray.push(
                     <Nav.Link href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/linkedin.jpg')} alt=" "
@@ -183,7 +186,7 @@ class Home extends Component {
         }
 
 
-        if (a.instagram === true) {
+        if (a.ig === true) {
             if (localStorage.getItem('selected') === 'instagram') {
                 buttonarray.push(
                     <Nav.Link href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/insta.jpeg')} alt=" "

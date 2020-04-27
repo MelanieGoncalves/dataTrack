@@ -28,6 +28,7 @@ class TopNavBar extends Component {
     logout = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("accounts");
+        localStorage.removeItem('selected');
         document.location.href = "/";
     }
 

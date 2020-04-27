@@ -55,6 +55,7 @@ class Home extends Component {
         /* let urlparser = require('url');
         console.log(window.location.href);
         let url = urlparser.parse(window.location.href, true); */
+        console.log(process.env.PORT);
         let userid = JSON.parse(localStorage.getItem('user'))._id;
         console.log('api/user/' + userid);
         app.get('api/user/' + userid)
@@ -144,7 +145,7 @@ class Home extends Component {
     handleInput(e, value) {
         let selected = value;
         localStorage.setItem('selected', selected);
-        window.location.href = './homeExpanded';
+        window.location.href = '/homeExpanded';
     }
 
 
