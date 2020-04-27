@@ -42,7 +42,7 @@ class Register extends Component {
             });
         }).catch(() => alert('Failed uploading data')) */
 
-        app.post('api/user/register', {
+        app.post('user/register', {
             email: email,
             firstname: firstname,
             lastname: lastname,

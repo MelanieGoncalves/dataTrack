@@ -18,89 +18,108 @@ class AddAccounts extends Component {
                 __v: 0,
                 _id: " "
             },
-            accounts: {
-                facebook: false,
-                twitter: false,
-                linkedin: false,
-                instagram: false
-            },
+            fb: false,
+            tw: false,
+            li: false,
+            ig: false
         }
     }
 
     componentDidMount() {
-        let urlparser = require('url');
+        /* let urlparser = require('url');
         console.log(window.location.href);
-        let url = urlparser.parse(window.location.href, true);
-        let userid = url.path.substr(6);
+        let url = urlparser.parse(window.location.href, true); */
+        let userid = JSON.parse(localStorage.getItem('user'))._id;
+        console.log(userid);
 
-        app.get('api/user/' + userid)
+        app.get('user/' + userid)
             .then(user => {
                 console.log(user);
                 this.setState({
                     user: user.data.user,
-                    accounts: {
-                        facebook: user.data.user.fb,
-                        twitter: user.data.user.tw,
-                        linkedin: user.data.user.li,
-                        instagram: user.data.user.ig
-                    }
+
                 });
             }).catch(err => {
                 console.log(err);
             })
     }
 
-    addFB() {
-        let currentaccounts = JSON.parse(localStorage.getItem('accounts'));
-        let accounts = {
-            facebook: true,
-            twitter: currentaccounts.twitter,
-            linkedin: currentaccounts.linkedin,
-            instagram: currentaccounts.instagram
-        }
-        localStorage.setItem('accounts', JSON.stringify(accounts));
-        document.getElementById('fblabel').style.color = "rgb(64,82,37)";
-        document.getElementById('fblabel').style.backgroundColor = "rgb(255,232,163)";
+    handleChange = e => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({ [name]: value });
+        //let label = `${name}label`;
+        console.log(name);
+        //   document.getElementById(label).style.color = "rgb(64,82,37)";
+        //  document.getElementById(label).style.backgroundColor = "rgb(255,232,163)";
     }
 
-    addTW() {
+    submit = e => {
+        let useraccounts = {
+            fb: this.state.fb,
+            tw: this.state.tw,
+            li: this.state.li,
+            ig: this.state.ig,
+        }
+        app.put('accounts/' + JSON.parse(localStorage.getItem('user'))._id, useraccounts)
+            .then(response => {
+                console.log(response);
+            }).catch(err => {
+                console.log(err);
+            })
+    }
+
+    // addFB() {
+    //     let currentaccounts = JSON.parse(localStorage.getItem('accounts'));
+    //     let accounts = {
+    //         fg: true,
+    //         tw: currentaccounts.tw,
+    //         li: currentaccounts.li,
+    //         ig: currentaccounts.ig
+    //     }
+    //     localStorage.setItem('accounts', JSON.stringify(accounts));
+    //     document.getElementById('fblabel').style.color = "rgb(64,82,37)";
+    //     document.getElementById('fblabel').style.backgroundColor = "rgb(255,232,163)";
+    // }
+
+    /* addTW() {
         let currentaccounts = JSON.parse(localStorage.getItem('accounts'));
         let accounts = {
-            facebook: currentaccounts.facebook,
-            twitter: true,
-            linkedin: currentaccounts.linkedin,
-            instagram: currentaccounts.instagram
+            fb: currentaccounts.fb,
+            tw: true,
+            li: currentaccounts.li,
+            ig: currentaccounts.ig
         }
         localStorage.setItem('accounts', JSON.stringify(accounts));
         document.getElementById('twlabel').style.color = "rgb(64,82,37)";
         document.getElementById('twlabel').style.backgroundColor = "rgb(255,232,163)";
-    }
+    } */
 
-    addLI() {
-        let currentaccounts = JSON.parse(localStorage.getItem('accounts'));
-        let accounts = {
-            facebook: currentaccounts.facebook,
-            twitter: currentaccounts.twitter,
-            linkedin: true,
-            instagram: currentaccounts.instagram
-        }
-        localStorage.setItem('accounts', JSON.stringify(accounts));
-        document.getElementById('lilabel').style.color = "rgb(64,82,37)";
-        document.getElementById('lilabel').style.backgroundColor = "rgb(255,232,163)";
-    }
+    /*   addLI() {
+          let currentaccounts = JSON.parse(localStorage.getItem('accounts'));
+          let accounts = {
+              fb: currentaccounts.fb,
+              tw: currentaccounts.tw,
+              li: true,
+              ig: currentaccounts.ig
+          }
+          localStorage.setItem('accounts', JSON.stringify(accounts));
+          document.getElementById('lilabel').style.color = "rgb(64,82,37)";
+          document.getElementById('lilabel').style.backgroundColor = "rgb(255,232,163)";
+      } */
 
-    addIG() {
-        let currentaccounts = JSON.parse(localStorage.getItem('accounts'));
-        let accounts = {
-            facebook: currentaccounts.facebook,
-            twitter: currentaccounts.twitter,
-            linkedin: currentaccounts.linkedin,
-            instagram: true
-        }
-        localStorage.setItem('accounts', JSON.stringify(accounts));
-        document.getElementById('iglabel').style.color = "rgb(64,82,37)";
-        document.getElementById('iglabel').style.backgroundColor = "rgb(255,232,163)";
-    }
+    /*  addIG() {
+         let currentaccounts = JSON.parse(localStorage.getItem('accounts'));
+         let accounts = {
+             fb: currentaccounts.fb,
+             tw: currentaccounts.tw,
+             li: currentaccounts.li,
+             ig: true
+         }
+         localStorage.setItem('accounts', JSON.stringify(accounts));
+         document.getElementById('iglabel').style.color = "rgb(64,82,37)";
+         document.getElementById('iglabel').style.backgroundColor = "rgb(255,232,163)";
+     } */
 
     render() {
         return (
@@ -118,33 +137,33 @@ class AddAccounts extends Component {
                             ADD ACCOUNTS
         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body style={{ backgroundColor: "rgb(174,201,135)", border: "none" }}>
+                    <Modal.Body style={{ backgroundColor: "rgb(255,250,240)", border: "none" }}>
                         <h4>Centered Modal</h4>
                         <Form style={{ display: "flex" }}>
 
 
 
                             <div style={{ display: "flex", flexDirection: "column" }}>
-                                <Button variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0", borderRadius: "10px" }} onClick={this.addFB} ><img src={require('../images/fblogo.jpg')} alt=" " style={{ height: "100px", borderRadius: "25px" }} /></Button>
+                                <Button name="fb" variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0", borderRadius: "10px" }} onClick={(e) => { this.handleChange(e) }} ><img src={require('../images/fblogo.jpg')} alt="fb" style={{ height: "100px", borderRadius: "25px" }} /></Button>
                                 <Form.Label style={{ color: "rgb(174,201,135)", marginTop: "15px", borderRadius: "5px" }} id="fblabel" >Facebook Added</Form.Label>
                             </div>
                             <div style={{ display: "flex", flexDirection: "column" }}>
-                                <Button variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0" }} onClick={this.addTW} ><img src={require('../images/twitter.jpg')} style={{ height: "100px", borderRadius: "25px" }} /></Button>
+                                <Button name="tw" variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0" }} onClick={(e) => { this.handleChange(e) }} ><img alt="twitter" src={require('../images/twitter.jpg')} style={{ height: "100px", borderRadius: "25px" }} /></Button>
                                 <Form.Label style={{ color: "rgb(174,201,135)", marginTop: "15px", borderRadius: "5px" }} id="twlabel" >Twitter Added</Form.Label>
                             </div>
                             <div style={{ display: "flex", flexDirection: "column" }}>
-                                <Button variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0" }} onClick={this.addLI} ><img src={require('../images/linkedin.jpg')} style={{ height: "100px", borderRadius: "25px" }} /></Button>
+                                <Button name="li" variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0" }} onClick={(e) => { this.handleChange(e) }} ><img alt="linkedin" src={require('../images/linkedin.jpg')} style={{ height: "100px", borderRadius: "25px" }} /></Button>
                                 <Form.Label style={{ color: "rgb(174,201,135)", marginTop: "15px", borderRadius: "5px" }} id="lilabel" >LinkedIn Added</Form.Label>
                             </div>
                             <div style={{ display: "flex", flexDirection: "column" }}>
-                                <Button variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0" }} onClick={this.addIG} ><img src={require('../images/insta.jpeg')} alt=" " style={{ height: "100px", borderRadius: "25px" }} /></Button>
+                                <Button name="ig" variant="outline-dark" style={{ backgroundColor: "transparent", border: "none", padding: "0" }} onClick={(e) => { this.handleChange(e) }} ><img src={require('../images/insta.jpeg')} alt="instagram" style={{ height: "100px", borderRadius: "25px" }} /></Button>
                                 <Form.Label style={{ color: "rgb(174,201,135)", marginTop: "15px", borderRadius: "5px" }} id="iglabel" >Instagram Added</Form.Label>
                             </div>
 
                         </Form>
                     </Modal.Body>
                     <Modal.Footer style={{ backgroundColor: "rgb(146, 160, 62)", border: "none" }}>
-                        <Button style={{ borderWidth: "2px" }} variant="outline-dark" onClick={() => { window.location = "/home" }}><strong>DONE</strong></Button>
+                        <Button style={{ borderWidth: "2px" }} variant="outline-dark" onClick={(e) => { this.submit(e) }}><strong>DONE</strong></Button>
                     </Modal.Footer>
                 </Modal>
             </div >

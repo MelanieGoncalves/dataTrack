@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route, NavLink as RRNavLink, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink as RRNavLink } from 'react-router-dom';
 import { Collapse, Navbar, Nav, NavItem, Container, NavLink, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown, NavbarToggler, NavbarBrand } from "reactstrap";
 import About from "./About"
 import Landing from "./Landing";
@@ -38,7 +38,7 @@ class TopNavBar extends Component {
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret style={{ color: "white" }}></DropdownToggle>
                     <DropdownMenu right style={{ border: "2px solid rgb(64,82,37)" }}>
-                        <DropdownItem href="/home">HOME</DropdownItem>
+                        <DropdownItem href="/home/:id" exact>HOME</DropdownItem>
                         <DropdownItem onClick={this.logout}>LOG OUT</DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
@@ -85,13 +85,13 @@ class TopNavBar extends Component {
 
                     </Navbar>
                     <Switch>
-                        <Route path="/home">
-                            <Home />
-                        </Route>
+
                         <Route path="/homeExpanded">
                             <HomeExpanded />
                         </Route>
-                        <Route path="/home/:id" exact component={Home}></Route>
+                        <Route path="/home/:id" exact component={Home}>
+                            <Home />
+                        </Route>
                         <Route path="/about">
                             <About />
                         </Route>

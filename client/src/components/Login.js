@@ -21,7 +21,7 @@ class Login extends Component {
         e.preventDefault();
         const { username, password } = this.state;
 
-        app.post('api/login', {
+        app.post('login', {
             username: username,
             password: password
         }).then(response => {

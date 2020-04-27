@@ -49,6 +49,30 @@ USERROUTES.route('/api/user/register').post(function (req, res) {
         });
 });
 
+USERROUTES.route('/api/accounts/:id').put(function (req, res) {
+    USER.updateOne(
+        { _id: req.params._id },
+        {
+            $set: {
+                fb: req.body.user.fb,
+                tw: req.body.user.tw,
+                li: req.body.user.li,
+                ig: req.body.user.ig,
+            }
+        }
+    ).then(response => {
+        res.status(200).json({
+            response: "Update successful",
+            updated: true
+        });
+    }).catch(err => {
+        res.status(401).json({
+            response: "Update failed",
+            updated: false
+        });
+    });
+});
+
 //login user
 USERROUTES.post('/api/login', function (req, res) {
     USER.findOne({ email: req.body.username })
@@ -74,24 +98,17 @@ USERROUTES.post('/api/login', function (req, res) {
 
 // GET one user
 USERROUTES.route("/api/user/:id").get(function (req, res) {
-    //  console.log("??: " + JSON.stringify(req.session));
-    //  if (req.session && req.session.userid) {
-    //     console.log("id: " + req.session.user);
-    USER.findOne({ _id: req.params.id })
-        .then(user => {
-            if (user != null) {
-                res.status(200).json({
-                    user: user
-                });
-            } else {
-                res.status(400).json({
-                    user: null
-                });
-            }
-        });
-    //  } else {
-    // console.log("Session not found");
-    //  }
+    USER.findOne({ _id: req.params.id }).then((user) => {
+        if (user != null) {
+            res.status(200).json({
+                user: user,
+            });
+        } else {
+            res.status(400).json({
+                user: null,
+            });
+        }
+    });
 
 });
 

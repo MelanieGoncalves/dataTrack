@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Nav, Button, Dropdown, Alert } from 'react-bootstrap';
-import { Tooltip } from 'reactstrap';
+import { Nav, Button, Alert } from 'react-bootstrap';
 import AddAccounts from './AddAccounts';
-import Background from '../images/bgfade.jpg';
 import { app } from '../utils/AxiosConfig';
 
 
@@ -53,12 +51,13 @@ class Home extends Component {
             this.setState({ tip: true });
         } */
 
+        // this.setState({ buttons: this.showButtons(JSON.parse(localStorage.getItem("accounts"))) });
         let urlparser = require('url');
         console.log(window.location.href);
         let url = urlparser.parse(window.location.href, true);
         let userid = url.path.substr(6);
-
-        app.get('api/user/' + userid)
+        console.log('api/user/' + userid);
+        app.get('user/' + userid)
             .then(user => {
                 console.log(user);
                 this.setState({
@@ -88,7 +87,7 @@ class Home extends Component {
     showButtons(a) {
         let buttonarray = [];
 
-        if (a.facebook === true) {
+        if (a.fb === true) {
             buttonarray.push(
                 <Nav.Link key="fb-a" onClick={(e) => this.handleInput(e, "facebook")} style={{ width: "100%", padding: "0" }}><img src={require('../images/fblogo.jpg')} alt=" "
                     style={{
@@ -100,7 +99,7 @@ class Home extends Component {
             )
         }
 
-        if (a.twitter === true) {
+        if (a.tw === true) {
             buttonarray.push(
                 <Nav.Link onClick={(e) => this.handleInput(e, "twitter")} style={{ width: "100%", padding: "0" }}><img src={require('../images/twitter.jpg')} alt=" "
                     style={{
@@ -112,7 +111,7 @@ class Home extends Component {
             )
         }
 
-        if (a.linkedin === true) {
+        if (a.li === true) {
             buttonarray.push(
                 <Nav.Link onClick={(e) => this.handleInput(e, "linkedin")} style={{ width: "100%", padding: "0" }}><img src={require('../images/linkedin.jpg')} alt=" "
                     style={{
@@ -124,7 +123,7 @@ class Home extends Component {
             )
         }
 
-        if (a.instagram === true) {
+        if (a.ig === true) {
             buttonarray.push(
                 <Nav.Link onClick={(e) => this.handleInput(e, "instagram")} style={{ width: "100%", padding: "0" }}><img src={require('../images/insta.jpeg')} alt=" "
                     style={{

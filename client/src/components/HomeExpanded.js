@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Nav, Button, NavItem, NavLink, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { Collapse, Card, CardBody } from 'reactstrap';
+import { Nav, Button, NavItem, NavLink } from 'react-bootstrap';
+import { Collapse, Card } from 'reactstrap';
 import AddAccounts from './AddAccounts';
 import Background from '../images/bgfade.jpg';
 
@@ -34,7 +34,7 @@ class Home extends Component {
         let u = await JSON.parse(localStorage.getItem("user"));
         let a = await JSON.parse(localStorage.getItem("accounts"));
         let b = await this.showButtons(a);
-        let g = [];
+        //let g = [];
         /* if (JSON.parse(localStorage.getItem('graphs')).graphs != null) {
             g = await JSON.parse(localStorage.getItem('graphs')).graphs;
         } */
@@ -88,7 +88,7 @@ class Home extends Component {
         let buttonarray = [];
 
         if (a.facebook === true) {
-            if (localStorage.getItem('selected') == 'facebook') {
+            if (localStorage.getItem('selected') === 'facebook') {
                 buttonarray.push(
                     <Nav.Link key="fb-a" href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/fblogo.jpg')} alt=" "
                         style={{
@@ -114,7 +114,7 @@ class Home extends Component {
         }
 
         if (a.twitter === true) {
-            if (localStorage.getItem('selected') == 'twitter') {
+            if (localStorage.getItem('selected') === 'twitter') {
                 buttonarray.push(
                     <Nav.Link href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/twitter.jpg')} alt=" "
                         style={{
@@ -140,7 +140,7 @@ class Home extends Component {
 
 
         if (a.linkedin === true) {
-            if (localStorage.getItem('selected') == 'linkedin') {
+            if (localStorage.getItem('selected') === 'linkedin') {
                 buttonarray.push(
                     <Nav.Link href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/linkedin.jpg')} alt=" "
                         style={{
@@ -166,7 +166,7 @@ class Home extends Component {
 
 
         if (a.instagram === true) {
-            if (localStorage.getItem('selected') == 'instagram') {
+            if (localStorage.getItem('selected') === 'instagram') {
                 buttonarray.push(
                     <Nav.Link href="/home" style={{ width: "100%", padding: "0" }}><img src={require('../images/insta.jpeg')} alt=" "
                         style={{
@@ -204,11 +204,11 @@ class Home extends Component {
 
     showGraph() {
         let graphPanel = (
-            <div style={{ height: "100%", padding: "30px", display: "flex", flexDirection: "column", padding: "10px", backgroundColor: "rgb(250,242,221)" }}>
+            <div style={{ height: "100%", padding: "30px", display: "flex", flexDirection: "column", backgroundColor: "rgb(250,242,221)" }}>
                 <div>
                     <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
                 </div>
-                <img src={require('../images/dummygraph.jpg')} />
+                <img alt="graph" src={require('../images/dummygraph.jpg')} />
                 <div>
                     <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
@@ -233,7 +233,7 @@ class Home extends Component {
         };
         graphsObj.graphs.push(
             <div style={{ padding: "10px" }}>
-                <img src={require('../images/dummygraph.jpg')} />
+                <img alt="graph" src={require('../images/dummygraph.jpg')} />
             </div>
         )
         this.setState({ graphs: graphsObj.graphs });

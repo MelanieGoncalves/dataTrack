@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Form from './components/Form';
-import DisplayUsers from './components/DisplayUsers';
-import axios from 'axios';
 import TopNavBar from './components/TopNavBar.js'
 import './App.css';
 class App extends Component {
