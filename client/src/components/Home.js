@@ -52,10 +52,10 @@ class Home extends Component {
         } */
 
         // this.setState({ buttons: this.showButtons(JSON.parse(localStorage.getItem("accounts"))) });
-        let urlparser = require('url');
+        /* let urlparser = require('url');
         console.log(window.location.href);
-        let url = urlparser.parse(window.location.href, true);
-        let userid = url.path.substr(6);
+        let url = urlparser.parse(window.location.href, true); */
+        let userid = JSON.parse(localStorage.getItem('user'))._id;
         console.log('api/user/' + userid);
         app.get('user/' + userid)
             .then(user => {
@@ -67,7 +67,9 @@ class Home extends Component {
                         twitter: user.data.user.tw,
                         linkedin: user.data.user.li,
                         instagram: user.data.user.ig
-                    }
+                    },
+                    buttons: this.showButtons(user.data.user)
+
                 });
             }).catch(err => {
                 console.log(err);

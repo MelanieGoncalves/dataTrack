@@ -50,20 +50,22 @@ USERROUTES.route('/api/user/register').post(function (req, res) {
 });
 
 USERROUTES.route('/api/accounts/:id').put(function (req, res) {
+    console.log(req.body.fb);
     USER.updateOne(
-        { _id: req.params._id },
+        { _id: req.params.id },
         {
             $set: {
-                fb: req.body.user.fb,
-                tw: req.body.user.tw,
-                li: req.body.user.li,
-                ig: req.body.user.ig,
+                fb: req.body.fb,
+                tw: req.body.tw,
+                li: req.body.li,
+                ig: req.body.ig,
             }
         }
     ).then(response => {
         res.status(200).json({
             response: "Update successful",
-            updated: true
+            updated: true,
+            user: response
         });
     }).catch(err => {
         res.status(401).json({
