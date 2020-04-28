@@ -26,7 +26,7 @@ class Home extends Component {
             commentsIsOpen: false,
             sharesIsOpen: false,
             showGraphPanel: false,
-            chartData: {
+            /* chartData: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                 datasets: [{
                     label: '# of Votes',
@@ -49,7 +49,7 @@ class Home extends Component {
                     ],
                     borderWidth: 1
                 }]
-            }
+            } */
 
         }
 
@@ -72,6 +72,7 @@ class Home extends Component {
          await this.setState({ buttons: b }); */
         let userid = JSON.parse(localStorage.getItem('user'))._id;
         console.log('api/user/' + userid);
+        this.getData();
         app.get('api/user/' + userid)
             .then(user => {
                 console.log(user);
@@ -248,9 +249,114 @@ class Home extends Component {
         window.location.href = './homeExpanded';
     }
 
-    showGraph() {
+    getData(type) {
+
+        let postData = {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+
+        let hourData = {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+
+        let dayData = {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+
+        let weekData = {
+            labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+        this.setState({ postData: postData, hourData: hourData, dayData: dayData, weekData: weekData });
+        //   console.log(this.state.chartData);
 
 
+
+    }
+    showPostGraph() {
         let graphPanel = (
             <div id="panel" style={{ height: "100%", width: "500px" }}>
                 <div>
@@ -259,7 +365,7 @@ class Home extends Component {
 
                 <Bar
 
-                    data={this.state.chartData}
+                    data={this.state.postData}
 
                     options={{ responsive: true, maintainAspectRatio: true }} />
 
@@ -272,9 +378,70 @@ class Home extends Component {
         return graphPanel;
     }
 
-    openPanel() {
-        console.log("Test");
-        this.setState({ graphPanel: this.showGraph(), showGraphPanel: true });
+    showHourGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+                <Bar data={this.state.hourData} options={{ responsive: true, maintainAspectRatio: true }} />
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+
+    showDayGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+                <Bar data={this.state.dayData} options={{ responsive: true, maintainAspectRatio: true }} />
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+
+    showWeekGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+                <Bar data={this.state.weekData} options={{ responsive: true, maintainAspectRatio: true }} />
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+
+
+
+    openPanel(e) {
+        let type = e.target.value;
+        if (type === 'post') {
+            this.setState({ graphPanel: this.showPostGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'hour') {
+            this.setState({ graphPanel: this.showHourGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'day') {
+            this.setState({ graphPanel: this.showDayGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'week') {
+            this.setState({ graphPanel: this.showWeekGraph(type), showGraphPanel: true });
+        }
+
+
+
 
     }
 
@@ -341,10 +508,10 @@ class Home extends Component {
                                 }}>FRIENDS</NavLink>
                                 <Collapse isOpen={this.state.friendsIsOpen}>
                                     <Card>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark" >LAST POST</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST HOUR</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST DAY</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark" >LAST POST</Button>
+                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
+                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuPosts} style={{
@@ -357,10 +524,10 @@ class Home extends Component {
                                 }}>POSTS</NavLink>
                                 <Collapse isOpen={this.state.postsIsOpen}>
                                     <Card>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST POST</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST HOUR</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST DAY</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST POST</Button>
+                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
+                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuLikes} style={{
@@ -373,10 +540,10 @@ class Home extends Component {
                                 }}>LIKES</NavLink>
                                 <Collapse isOpen={this.state.likesIsOpen}>
                                     <Card>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST POST</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST HOUR</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST DAY</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST POST</Button>
+                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
+                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuComments} style={{
@@ -389,10 +556,10 @@ class Home extends Component {
                                 }}>COMMENTS</NavLink>
                                 <Collapse isOpen={this.state.commentsIsOpen}>
                                     <Card>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST POST</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST HOUR</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST DAY</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST POST</Button>
+                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
+                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuShares} style={{
@@ -405,9 +572,9 @@ class Home extends Component {
                                 }}>SHARES</NavLink>
                                 <Collapse isOpen={this.state.sharesIsOpen}>
                                     <Card>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST POST</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST HOUR</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST DAY</Button>
+                                        <Button value="post" onClick={() => this.openPanel()} variant="outline-dark">LAST POST</Button>
+                                        <Button value="hour" onClick={() => this.openPanel()} variant="outline-dark">LAST HOUR</Button>
+                                        <Button value="day" onClick={() => this.openPanel()} variant="outline-dark">LAST DAY</Button>
                                         <Button onClick={() => this.openPanel()} variant="outline-dark">LAST WEEK</Button>
                                     </Card>
                                 </Collapse>
