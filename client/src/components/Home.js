@@ -52,11 +52,11 @@ class Home extends Component {
         } */
 
         // this.setState({ buttons: this.showButtons(JSON.parse(localStorage.getItem("accounts"))) });
-        /* let urlparser = require('url');
+        let urlparser = require('url');
         console.log(window.location.href);
-        let url = urlparser.parse(window.location.href, true); */
-        console.log(process.env.PORT);
-        let userid = JSON.parse(localStorage.getItem('user'))._id;
+        let url = urlparser.parse(window.location.href, true);
+        console.log(url.path.substr(6));
+        let userid = url.path.substr(6);
         console.log('api/user/' + userid);
         app.get('api/user/' + userid)
             .then(user => {
