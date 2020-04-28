@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import '../styles/HomeExpanded.css';
 import { Nav, Button, NavItem, NavLink } from 'react-bootstrap';
 import { Collapse, Card } from 'reactstrap';
 import AddAccounts from './AddAccounts';
 import { app } from '../utils/AxiosConfig';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 
 class Home extends Component {
     constructor(props) {
@@ -24,7 +26,30 @@ class Home extends Component {
             commentsIsOpen: false,
             sharesIsOpen: false,
             showGraphPanel: false,
-            graphs: []
+            chartData: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
 
         }
 
@@ -51,7 +76,7 @@ class Home extends Component {
             .then(user => {
                 console.log(user);
                 this.setState({
-                    user: user.data,
+                    user: user.data.user,
                     accounts: {
                         facebook: user.data.user.fb,
                         twitter: user.data.user.tw,
@@ -224,12 +249,22 @@ class Home extends Component {
     }
 
     showGraph() {
+
+
         let graphPanel = (
-            <div style={{ height: "100%", padding: "30px", display: "flex", flexDirection: "column", backgroundColor: "rgb(250,242,221)" }}>
+            <div id="panel" style={{ height: "100%" }}>
                 <div>
                     <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
                 </div>
-                <img alt="graph" src={require('../images/dummygraph.jpg')} />
+
+                <Bar
+
+                    data={this.state.chartData}
+                    width={400}
+                    height={400}
+                    options={{ responsive: true, maintainAspectRatio: false }} />
+
+
                 <div>
                     <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
