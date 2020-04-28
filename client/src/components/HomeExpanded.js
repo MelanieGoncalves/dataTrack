@@ -252,7 +252,7 @@ class Home extends Component {
 
 
         let graphPanel = (
-            <div id="panel" style={{ height: "100%" }}>
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
                 <div>
                     <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
                 </div>
@@ -260,9 +260,8 @@ class Home extends Component {
                 <Bar
 
                     data={this.state.chartData}
-                    width={400}
-                    height={400}
-                    options={{ responsive: true, maintainAspectRatio: false }} />
+
+                    options={{ responsive: true, maintainAspectRatio: true }} />
 
 
                 <div>

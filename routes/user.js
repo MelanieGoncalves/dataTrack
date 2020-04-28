@@ -81,7 +81,10 @@ USERROUTES.post('/api/login', function (req, res) {
         .then(user => {
 
             if (!user) {
-                console.log('Error');
+                res.status(200).json({
+                    registered: false,
+                    issue: 'user not found'
+                })
             } else {
                 if (req.body.password === user.password) {
                     //   req.session.userid = user._id;
@@ -92,7 +95,10 @@ USERROUTES.post('/api/login', function (req, res) {
                         user: user
                     })
                 } else {
-                    console.log("Invalid login");
+                    res.status(200).json({
+                        registered: false,
+                        issue: 'invalid password'
+                    })
                 }
             }
         });

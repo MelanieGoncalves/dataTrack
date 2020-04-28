@@ -30,7 +30,16 @@ class Login extends Component {
                 window.localStorage.setItem('user', JSON.stringify(response.data.user));
                 window.location = '/home/' + response.data.user._id;
             } else {
-                alert('Something went wrong')
+                if (response.data.issue && response.data.issue === "user not found") {
+                    alert('User email is not found');
+                }
+                else if (response.data.issue && response.data.issue === "invalid password") {
+                    alert("Invalid password");
+                }
+                else {
+                    alert('Something went wrong');
+                }
+
             }
         }).catch(err => {
             console.log(err);
