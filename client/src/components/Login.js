@@ -65,14 +65,14 @@ class Login extends Component {
 
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label style={{ float: "left", margin: "0 30px 0 50px" }}>Email address</Form.Label>
-                                <Form.Control size="sm" name="username" type="email" placeholder="Enter email"
+                                <Form.Control required size="sm" name="username" type="email" placeholder="Enter email"
                                     style={{ width: "300px" }} onChange={this.handleChange} />
 
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label style={{ float: "left", margin: "0 30px 0 80.59px" }}>Password</Form.Label>
-                                <Form.Control size="sm" name="password" type="password" placeholder="Password"
+                                <Form.Control required size="sm" name="password" type="password" placeholder="Password"
                                     style={{ width: "300px" }} onChange={this.handleChange} />
                             </Form.Group>
 

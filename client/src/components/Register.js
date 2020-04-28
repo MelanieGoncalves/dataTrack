@@ -94,20 +94,20 @@ class Register extends Component {
 
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label style={{ float: "left", margin: "0 30px 0 55.35px" }}>Email address</Form.Label>
-                                <Form.Control size="sm" name="email" type="email" placeholder="Enter email"
+                                <Form.Control required size="sm" name="email" type="email" placeholder="Enter email"
                                     style={{ width: "300px" }} onChange={this.handleChange} />
 
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label style={{ float: "left", margin: "0 30px 0 85.94px" }}>Password</Form.Label>
-                                <Form.Control size="sm" name="password" type="password" placeholder="Password"
+                                <Form.Control required size="sm" name="password" type="password" placeholder="Password"
                                     style={{ width: "300px" }} onChange={this.handleChange} />
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label style={{ float: "left", margin: "0 30px 0 25px" }}>Confirm Password</Form.Label>
-                                <Form.Control size="sm" type="password" placeholder="Password" style={{ width: "300px" }} />
+                                <Form.Control required size="sm" type="password" placeholder="Password" style={{ width: "300px" }} />
                             </Form.Group>
 
                             <Button variant="outline-dark" type="submit" style={{ borderWidth: "2px" }}>
