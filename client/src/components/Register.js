@@ -116,7 +116,7 @@ class Register extends Component {
                         </Form>
 
                     </Card.Body>
-                    <Card.Link style={{ color: "white" }} >Already Registered?</Card.Link>
+                    <Card.Link style={{ color: "white" }} href="/login" >Already Registered?</Card.Link>
                 </Card>
             </div>
         );
