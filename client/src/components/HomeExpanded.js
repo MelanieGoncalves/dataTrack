@@ -51,7 +51,7 @@ class Home extends Component {
             .then(user => {
                 console.log(user);
                 this.setState({
-                    user: user.data.user,
+                    user: user.data,
                     accounts: {
                         facebook: user.data.user.fb,
                         twitter: user.data.user.tw,
