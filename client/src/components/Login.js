@@ -27,7 +27,7 @@ class Login extends Component {
         }).then(response => {
             console.log(response);
             if (response.data.registered) {
-                localStorage.setItem('user', JSON.stringify(response.data.user));
+                window.localStorage.setItem('user', JSON.stringify(response.data.user));
                 window.location = '/home/' + response.data.user._id;
             } else {
                 alert('Something went wrong')
