@@ -251,11 +251,11 @@ class Home extends Component {
 
     getData(type) {
 
-        let postData = {
+        let postDay = {
             labels: ['Likes', 'Comments', 'Shares'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3],
+                data: [Math.random(), Math.random(), Math.random()],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -268,13 +268,70 @@ class Home extends Component {
                 ],
                 borderWidth: 1
             }]
-        }
+        };
+
+        let postWeek = {
+            labels: ['Likes', 'Comments', 'Shares'],
+            datasets: [{
+                label: '# of Votes',
+                data: [Math.random(), Math.random(), Math.random()],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        let postMonth = {
+            labels: ['Likes', 'Comments', 'Shares'],
+            datasets: [{
+                label: '# of Votes',
+                data: [Math.random(), Math.random(), Math.random()],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        let postYear = {
+            labels: ['Likes', 'Comments', 'Shares'],
+            datasets: [{
+                label: '# of Votes',
+                data: [Math.random(), Math.random(), Math.random()],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
 
         let weekData = {
             labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 15, 3, 9],
+                data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -301,7 +358,7 @@ class Home extends Component {
             labels: ['Week 1', 'Week ', 'Week 3', 'Week4'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5],
+                data: [Math.random(), Math.random(), Math.random(), Math.random()],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -322,7 +379,7 @@ class Home extends Component {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3, 11, 8, 17, 8, 12, 14],
+                data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -354,13 +411,21 @@ class Home extends Component {
                 borderWidth: 1
             }]
         }
-        this.setState({ postData: postData, weekData: weekData, monthData: monthData, yearData: yearData });
+        this.setState({
+            postDay: postDay,
+            postWeek: postWeek,
+            postMonth: postMonth,
+            postYear: postYear,
+            weekData: weekData,
+            monthData: monthData,
+            yearData: yearData
+        });
         //   console.log(this.state.chartData);
 
 
 
     }
-    showPostGraph() {
+    showPostDayGraph() {
         let graphPanel = (
             <div id="panel" style={{ height: "100%", width: "500px" }}>
                 <div>
@@ -369,7 +434,70 @@ class Home extends Component {
 
                 <Bar
 
-                    data={this.state.postData}
+                    data={this.state.postDay}
+
+                    options={{ responsive: true, maintainAspectRatio: true }} />
+
+
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+    showPostWeekGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+
+                <Bar
+
+                    data={this.state.postWeek}
+
+                    options={{ responsive: true, maintainAspectRatio: true }} />
+
+
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+    showPostMonthGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+
+                <Bar
+
+                    data={this.state.postMonth}
+
+                    options={{ responsive: true, maintainAspectRatio: true }} />
+
+
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+    showPostYearGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+
+                <Bar
+
+                    data={this.state.postYear}
 
                     options={{ responsive: true, maintainAspectRatio: true }} />
 
@@ -431,8 +559,17 @@ class Home extends Component {
 
     openPanel(e) {
         let type = e.target.value;
-        if (type === 'post') {
-            this.setState({ graphPanel: this.showPostGraph(type), showGraphPanel: true });
+        if (type === 'post-day') {
+            this.setState({ graphPanel: this.showPostDayGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'post-week') {
+            this.setState({ graphPanel: this.showPostWeekGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'post-month') {
+            this.setState({ graphPanel: this.showPostMonthGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'post-year') {
+            this.setState({ graphPanel: this.showPostYearGraph(type), showGraphPanel: true });
         }
         else if (type === 'week') {
             this.setState({ graphPanel: this.showWeekGraph(type), showGraphPanel: true });
@@ -485,12 +622,12 @@ class Home extends Component {
                     overflow: "auto",
                     width: "100%", height: "100%"
                 }}>
-                    <div style={{ width: "15%", minWidth: "150px", backgroundColor: "rgb(211,209,135)", height: "100%" }}>
+                    <div style={{ width: "15%", minWidth: "150px", backgroundColor: "rgb(147, 159, 156)", height: "100%" }}>
                         <Nav style={{ width: "100%", height: "100%" }}>
                             <div style={{ float: "center", width: "100%" }}>
                                 <p style={{
                                     textTransform: "uppercase",
-                                    textShadow: "1.5px 1.5px #b3ab12",
+                                    textShadow: "1px 1px white",
                                     fontFamily: "Calibri",
                                     fontSize: "x-large",
                                     color: "rgb(64,82,37)",
@@ -504,11 +641,11 @@ class Home extends Component {
                             <NavItem style={{ width: "100%", height: "100%" }}>
                                 <NavLink onClick={this.toggleMenuFriends} style={{
                                     color: "white",
-                                    border: "1px solid white",
+                                    border: "2px solid rgb(64,82,37)",
                                     height: "8%",
                                     fontSize: "120%",
                                     borderRadius: "5px",
-                                    textShadow: "2px 2px #b3ab12"
+                                    textShadow: "1px 1px black"
                                 }}>FRIENDS</NavLink>
                                 <Collapse isOpen={this.state.friendsIsOpen}>
                                     <Card>
@@ -520,27 +657,27 @@ class Home extends Component {
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuPosts} style={{
                                     color: "white",
-                                    border: "1px solid white",
+                                    border: "2px solid rgb(64,82,37)",
                                     height: "8%",
                                     fontSize: "120%",
                                     borderRadius: "5px",
-                                    textShadow: "2px 2px #b3ab12"
+                                    textShadow: "1px 1px black"
                                 }}>POSTS</NavLink>
                                 <Collapse isOpen={this.state.postsIsOpen}>
                                     <Card>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST DAY</Button>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST WEEK</Button>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST MONTH</Button>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST YEAR</Button>
+                                        <Button value="post-day" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST DAY</Button>
+                                        <Button value="post-week" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST WEEK</Button>
+                                        <Button value="post-month" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST MONTH</Button>
+                                        <Button value="post-year" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST YEAR</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuLikes} style={{
                                     color: "white",
-                                    border: "1px solid white",
+                                    border: "2px solid rgb(64,82,37)",
                                     height: "8%",
                                     fontSize: "120%",
                                     borderRadius: "5px",
-                                    textShadow: "2px 2px #b3ab12"
+                                    textShadow: "1px 1px black"
                                 }}>LIKES</NavLink>
                                 <Collapse isOpen={this.state.likesIsOpen}>
                                     <Card>
@@ -551,11 +688,11 @@ class Home extends Component {
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuComments} style={{
                                     color: "white",
-                                    border: "1px solid white",
+                                    border: "2px solid rgb(64,82,37)",
                                     height: "8%",
                                     fontSize: "120%",
                                     borderRadius: "5px",
-                                    textShadow: "2px 2px #b3ab12"
+                                    textShadow: "1px 1px black"
                                 }}>COMMENTS</NavLink>
                                 <Collapse isOpen={this.state.commentsIsOpen}>
                                     <Card>
@@ -566,11 +703,11 @@ class Home extends Component {
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuShares} style={{
                                     color: "white",
-                                    border: "1px solid white",
+                                    border: "2px solid rgb(64,82,37)",
                                     height: "8%",
                                     fontSize: "120%",
                                     borderRadius: "5px",
-                                    textShadow: "2px 2px #b3ab12"
+                                    textShadow: "1px 1px black"
                                 }}>SHARES</NavLink>
                                 <Collapse isOpen={this.state.sharesIsOpen}>
                                     <Card>
