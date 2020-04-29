@@ -145,7 +145,7 @@ class Home extends Component {
     handleInput(e, value) {
         let selected = value;
         localStorage.setItem('selected', selected);
-        window.location.href = '/homeExpanded';
+        window.location = '/homeExpanded/' + JSON.parse(localStorage.getItem('user'))._id;
     }
 
 

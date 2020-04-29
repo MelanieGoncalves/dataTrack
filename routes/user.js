@@ -19,7 +19,8 @@ USERROUTES.route('/api/user/register').post(function (req, res) {
                     fb: false,
                     li: false,
                     tw: false,
-                    ig: false
+                    ig: false,
+                    graphs: []
                 });
 
                 //   req.session.user = newUser;
@@ -74,6 +75,28 @@ USERROUTES.route('/api/accounts/:id').put(function (req, res) {
         });
     });
 });
+
+USERROUTES.route('/api/graphs/:id').put(function (req, res) {
+    USER.updateOne(
+        { _id: req.params.id },
+        {
+            $set: {
+                graphs: req.body.graphs
+            }
+        }
+    ).then(response => {
+        res.status(200).json({
+            response: "Update successful",
+            updated: true,
+            user: response
+        });
+    }).catch(err => {
+        res.status(401).json({
+            response: "Update failed",
+            updated: false
+        });
+    })
+})
 
 //login user
 USERROUTES.post('/api/login', function (req, res) {

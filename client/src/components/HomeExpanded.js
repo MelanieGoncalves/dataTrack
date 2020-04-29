@@ -255,7 +255,7 @@ class Home extends Component {
             labels: ['Likes', 'Comments', 'Shares'],
             datasets: [{
                 label: '# of Votes',
-                data: [Math.random(), Math.random(), Math.random()],
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -274,7 +274,7 @@ class Home extends Component {
             labels: ['Likes', 'Comments', 'Shares'],
             datasets: [{
                 label: '# of Votes',
-                data: [Math.random(), Math.random(), Math.random()],
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -293,7 +293,7 @@ class Home extends Component {
             labels: ['Likes', 'Comments', 'Shares'],
             datasets: [{
                 label: '# of Votes',
-                data: [Math.random(), Math.random(), Math.random()],
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -312,7 +312,7 @@ class Home extends Component {
             labels: ['Likes', 'Comments', 'Shares'],
             datasets: [{
                 label: '# of Votes',
-                data: [Math.random(), Math.random(), Math.random()],
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -331,7 +331,7 @@ class Home extends Component {
             labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             datasets: [{
                 label: '# of Votes',
-                data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()],
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -358,7 +358,7 @@ class Home extends Component {
             labels: ['Week 1', 'Week ', 'Week 3', 'Week4'],
             datasets: [{
                 label: '# of Votes',
-                data: [Math.random(), Math.random(), Math.random(), Math.random()],
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -379,7 +379,7 @@ class Home extends Component {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [{
                 label: '# of Votes',
-                data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()],
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

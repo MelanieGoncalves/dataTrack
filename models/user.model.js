@@ -12,6 +12,7 @@ const userSchema = new Schema({
     ig: Boolean,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
+    graphs: Array
 })
 
 const USER = mongoose.model("user", userSchema);

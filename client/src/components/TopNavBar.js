@@ -13,7 +13,9 @@ class TopNavBar extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            user: null
+            user: {
+                _id: ''
+            }
         }
     }
 
@@ -39,7 +41,7 @@ class TopNavBar extends Component {
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret style={{ color: "white" }}></DropdownToggle>
                     <DropdownMenu right style={{ border: "2px solid rgb(64,82,37)" }}>
-                        <DropdownItem href="/home/:id" exact>HOME</DropdownItem>
+                        <DropdownItem href={`/home/${this.state.user._id}`} exact>HOME</DropdownItem>
                         <DropdownItem onClick={this.logout}>LOG OUT</DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
@@ -87,7 +89,7 @@ class TopNavBar extends Component {
                     </Navbar>
                     <Switch>
 
-                        <Route path="/homeExpanded">
+                        <Route path="/homeExpanded/:id" exact component={HomeExpanded}>
                             <HomeExpanded />
                         </Route>
                         <Route path="/home/:id" exact component={Home}>
