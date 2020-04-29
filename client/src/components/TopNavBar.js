@@ -14,13 +14,16 @@ class TopNavBar extends Component {
         this.state = {
             isOpen: false,
             user: {
-                _id: ''
+                _id: '0'
             }
         }
     }
 
     componentDidMount() {
-        this.setState({ user: JSON.parse(localStorage.getItem('user')) });
+        if (JSON.parse(localStorage.getItem('user'))) {
+            this.setState({ user: JSON.parse(localStorage.getItem('user')) });
+        }
+
     }
 
     toggle = () => {

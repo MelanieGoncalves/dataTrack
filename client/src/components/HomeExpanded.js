@@ -25,6 +25,7 @@ class Home extends Component {
             likesIsOpen: false,
             commentsIsOpen: false,
             sharesIsOpen: false,
+            graphs: [],
             showGraphPanel: false,
             /* chartData: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -601,6 +602,12 @@ class Home extends Component {
         )
         this.setState({ graphs: graphsObj.graphs });
         localStorage.setItem('graphs', JSON.stringify(graphsObj));
+        app.put('/api/graphs/' + this.state.user._id, this.state.graphs)
+            .then(response => {
+                console.log(response);
+            }).catch(err => {
+                console.log(err);
+            })
     }
 
 
