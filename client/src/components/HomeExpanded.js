@@ -252,86 +252,84 @@ class Home extends Component {
     getData(type) {
 
         let postData = {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['Likes', 'Comments', 'Shares'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [12, 19, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 206, 86, 0.2)'
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }
-
-        let hourData = {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }
-
-        let dayData = {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(255, 206, 86, 1)'
                 ],
                 borderWidth: 1
             }]
         }
 
         let weekData = {
-            labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
+            labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [12, 19, 3, 5, 15, 3, 9],
                 backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(56, 150, 200, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(56, 150, 200, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+
+        let monthData = {
+            labels: ['Week 1', 'Week ', 'Week 3', 'Week4'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+
+        let yearData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3, 11, 8, 17, 8, 12, 14],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
@@ -345,12 +343,18 @@ class Home extends Component {
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
             }]
         }
-        this.setState({ postData: postData, hourData: hourData, dayData: dayData, weekData: weekData });
+        this.setState({ postData: postData, weekData: weekData, monthData: monthData, yearData: yearData });
         //   console.log(this.state.chartData);
 
 
@@ -378,36 +382,6 @@ class Home extends Component {
         return graphPanel;
     }
 
-    showHourGraph() {
-        let graphPanel = (
-            <div id="panel" style={{ height: "100%", width: "500px" }}>
-                <div>
-                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
-                </div>
-                <Bar data={this.state.hourData} options={{ responsive: true, maintainAspectRatio: true }} />
-                <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
-                </div>
-            </div>
-        );
-        return graphPanel;
-    }
-
-    showDayGraph() {
-        let graphPanel = (
-            <div id="panel" style={{ height: "100%", width: "500px" }}>
-                <div>
-                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
-                </div>
-                <Bar data={this.state.dayData} options={{ responsive: true, maintainAspectRatio: true }} />
-                <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
-                </div>
-            </div>
-        );
-        return graphPanel;
-    }
-
     showWeekGraph() {
         let graphPanel = (
             <div id="panel" style={{ height: "100%", width: "500px" }}>
@@ -423,6 +397,36 @@ class Home extends Component {
         return graphPanel;
     }
 
+    showMonthGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+                <Bar data={this.state.monthData} options={{ responsive: true, maintainAspectRatio: true }} />
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+
+    showYearGraph() {
+        let graphPanel = (
+            <div id="panel" style={{ height: "100%", width: "500px" }}>
+                <div>
+                    <Button onClick={() => { this.closePanel() }} style={{ width: "40px", height: "40px", float: "right", marginBottom: "10px" }} variant="outline-danger"><strong>X</strong></Button>
+                </div>
+                <Bar data={this.state.yearData} options={{ responsive: true, maintainAspectRatio: true }} />
+                <div>
+                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                </div>
+            </div>
+        );
+        return graphPanel;
+    }
+
 
 
     openPanel(e) {
@@ -430,14 +434,14 @@ class Home extends Component {
         if (type === 'post') {
             this.setState({ graphPanel: this.showPostGraph(type), showGraphPanel: true });
         }
-        else if (type === 'hour') {
-            this.setState({ graphPanel: this.showHourGraph(type), showGraphPanel: true });
-        }
-        else if (type === 'day') {
-            this.setState({ graphPanel: this.showDayGraph(type), showGraphPanel: true });
-        }
         else if (type === 'week') {
             this.setState({ graphPanel: this.showWeekGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'month') {
+            this.setState({ graphPanel: this.showMonthGraph(type), showGraphPanel: true });
+        }
+        else if (type === 'year') {
+            this.setState({ graphPanel: this.showYearGraph(type), showGraphPanel: true });
         }
 
 
@@ -508,10 +512,10 @@ class Home extends Component {
                                 }}>FRIENDS</NavLink>
                                 <Collapse isOpen={this.state.friendsIsOpen}>
                                     <Card>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark" >LAST POST</Button>
-                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
-                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
-                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
+
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST WEEK</Button>
+                                        <Button value="month" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST MONTH</Button>
+                                        <Button value="year" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST YEAR</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuPosts} style={{
@@ -524,10 +528,10 @@ class Home extends Component {
                                 }}>POSTS</NavLink>
                                 <Collapse isOpen={this.state.postsIsOpen}>
                                     <Card>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST POST</Button>
-                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
-                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
-                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST DAY</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST WEEK</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST MONTH</Button>
+                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST YEAR</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuLikes} style={{
@@ -540,10 +544,9 @@ class Home extends Component {
                                 }}>LIKES</NavLink>
                                 <Collapse isOpen={this.state.likesIsOpen}>
                                     <Card>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST POST</Button>
-                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
-                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
-                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST WEEK</Button>
+                                        <Button value="month" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST MONTH</Button>
+                                        <Button value="year" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST YEAR</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuComments} style={{
@@ -556,10 +559,9 @@ class Home extends Component {
                                 }}>COMMENTS</NavLink>
                                 <Collapse isOpen={this.state.commentsIsOpen}>
                                     <Card>
-                                        <Button value="post" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST POST</Button>
-                                        <Button value="hour" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST HOUR</Button>
-                                        <Button value="day" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST DAY</Button>
-                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST WEEK</Button>
+                                        <Button value="month" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST MONTH</Button>
+                                        <Button value="year" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST YEAR</Button>
                                     </Card>
                                 </Collapse>
                                 <NavLink onClick={this.toggleMenuShares} style={{
@@ -572,10 +574,9 @@ class Home extends Component {
                                 }}>SHARES</NavLink>
                                 <Collapse isOpen={this.state.sharesIsOpen}>
                                     <Card>
-                                        <Button value="post" onClick={() => this.openPanel()} variant="outline-dark">LAST POST</Button>
-                                        <Button value="hour" onClick={() => this.openPanel()} variant="outline-dark">LAST HOUR</Button>
-                                        <Button value="day" onClick={() => this.openPanel()} variant="outline-dark">LAST DAY</Button>
-                                        <Button onClick={() => this.openPanel()} variant="outline-dark">LAST WEEK</Button>
+                                        <Button value="week" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST WEEK</Button>
+                                        <Button value="month" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST MONTH</Button>
+                                        <Button value="year" onClick={(e) => this.openPanel(e)} variant="outline-dark">PAST YEAR</Button>
                                     </Card>
                                 </Collapse>
                             </NavItem>
