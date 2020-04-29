@@ -13,6 +13,7 @@ class TopNavBar extends Component {
         super(props);
         this.state = {
             isOpen: false,
+            isLoggedIn: false,
             user: {
                 _id: '0'
             }
@@ -21,7 +22,10 @@ class TopNavBar extends Component {
 
     componentDidMount() {
         if (JSON.parse(localStorage.getItem('user'))) {
-            this.setState({ user: JSON.parse(localStorage.getItem('user')) });
+            this.setState({
+                user: JSON.parse(localStorage.getItem('user')),
+                isLoggedIn: true
+            });
         }
 
     }
@@ -34,6 +38,7 @@ class TopNavBar extends Component {
         localStorage.removeItem("user");
         localStorage.removeItem("accounts");
         localStorage.removeItem('selected');
+        this.setState({ user: { _id: "0" }, isLoggedIn: false });
         document.location.href = "/";
     }
 
@@ -82,7 +87,7 @@ class TopNavBar extends Component {
                             <NavbarToggler onClick={this.toggle} />
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" >
-                                    {this.state.user ? LOGGEDIN : LOGGEDOUT}
+                                    {this.state.isLoggedIn ? LOGGEDIN : LOGGEDOUT}
                                 </Nav>
                             </Collapse>
                         </Container>
