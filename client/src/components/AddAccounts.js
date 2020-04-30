@@ -26,10 +26,11 @@ class AddAccounts extends Component {
     }
 
     componentDidMount() {
-        let urlparser = require('url');
+        /* let urlparser = require('url');
         console.log(window.location.href);
         let url = urlparser.parse(window.location.href, true);
-        let userid = url.path.substr(6);
+        let userid = url.path.substr(6); */
+        let userid = JSON.parse(localStorage.getItem('user'))._id;
         console.log(userid);
 
         app.get('api/user/' + userid)

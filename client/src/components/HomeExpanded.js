@@ -4,7 +4,7 @@ import { Nav, Button, NavItem, NavLink } from 'react-bootstrap';
 import { Collapse, Card } from 'reactstrap';
 import AddAccounts from './AddAccounts';
 import { app } from '../utils/AxiosConfig';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 class Home extends Component {
     constructor(props) {
@@ -12,7 +12,19 @@ class Home extends Component {
         this.state = {
             addAccountShow: false,
             isOpen: false,
-            user: null,
+            user: {
+                email: " ",
+                fb: false,
+                first_name: " ",
+                ig: false,
+                last_name: " ",
+                li: false,
+                password: " ",
+                tw: false,
+                __v: 0,
+                _id: " ",
+                graphs: []
+            },
             accounts: {
                 facebook: false,
                 twitter: false,
@@ -71,7 +83,11 @@ class Home extends Component {
              // graphs: g
          });
          await this.setState({ buttons: b }); */
-        let userid = JSON.parse(localStorage.getItem('user'))._id;
+        let urlparser = require('url');
+        console.log(window.location.href);
+        let url = urlparser.parse(window.location.href, true);
+        console.log(url.path.substr(14));
+        let userid = url.path.substr(14);
         console.log('api/user/' + userid);
         this.getData();
         app.get('api/user/' + userid)
@@ -87,11 +103,46 @@ class Home extends Component {
                     },
                     selected: localStorage.getItem('selected'),
                     buttons: this.showButtons(user.data.user),
-
+                    displaySavedGraphs: this.showSavedGraphs(user.data.user.graphs)
                 });
+
             }).catch(err => {
                 console.log(err);
             })
+
+    }
+
+    showSavedGraphs(graphs) {
+        let displayArr = [];
+        if (graphs) {
+            let graphArr = graphs;
+            console.log(graphArr);
+            for (let i = 0; i < graphArr.length; i++) {
+                let graphObj = {
+                    labels: graphArr[i].labels,
+                    datasets: [{
+                        data: graphArr[i].datasets[0].data,
+                        backgroundColor: graphArr[i].datasets[0].backgroundColor,
+                        borderColor: graphArr[i].datasets[0].borderColor,
+                        borderWidth: 1
+                    }]
+
+                }
+                console.log(graphObj);
+                displayArr.push(
+                    <div key={i}>
+                        <Bar
+                            data={graphObj}
+
+                            options={{ responsive: true, maintainAspectRatio: true }} />/>
+
+
+                    </div>
+                )
+            }
+        }
+
+        return displayArr;
     }
 
     toggle = () => {
@@ -441,7 +492,7 @@ class Home extends Component {
 
 
                 <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                    <Button onClick={() => { this.saveGraph(this.state.postDay) }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
             </div>
         );
@@ -462,7 +513,7 @@ class Home extends Component {
 
 
                 <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                    <Button onClick={() => { this.saveGraph(this.state.postWeek) }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
             </div>
         );
@@ -483,7 +534,7 @@ class Home extends Component {
 
 
                 <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                    <Button onClick={() => { this.saveGraph(this.state.postMonth) }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
             </div>
         );
@@ -504,7 +555,7 @@ class Home extends Component {
 
 
                 <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                    <Button onClick={() => { this.saveGraph(this.state.postYear) }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
             </div>
         );
@@ -512,6 +563,7 @@ class Home extends Component {
     }
 
     showWeekGraph() {
+
         let graphPanel = (
             <div id="panel" style={{ height: "100%", width: "500px" }}>
                 <div>
@@ -519,7 +571,7 @@ class Home extends Component {
                 </div>
                 <Bar data={this.state.weekData} options={{ responsive: true, maintainAspectRatio: true }} />
                 <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                    <Button onClick={() => { this.saveGraph(this.state.weekData) }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
             </div>
         );
@@ -534,7 +586,7 @@ class Home extends Component {
                 </div>
                 <Bar data={this.state.monthData} options={{ responsive: true, maintainAspectRatio: true }} />
                 <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                    <Button onClick={() => { this.saveGraph(this.state.monthData) }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
             </div>
         );
@@ -542,6 +594,7 @@ class Home extends Component {
     }
 
     showYearGraph() {
+
         let graphPanel = (
             <div id="panel" style={{ height: "100%", width: "500px" }}>
                 <div>
@@ -549,7 +602,7 @@ class Home extends Component {
                 </div>
                 <Bar data={this.state.yearData} options={{ responsive: true, maintainAspectRatio: true }} />
                 <div>
-                    <Button onClick={() => { this.saveGraph() }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
+                    <Button onClick={() => { this.saveGraph(this.state.yearData) }} style={{ float: "center", marginTop: "10px", borderWidth: "2px" }} variant="outline-dark"><strong>SAVE</strong></Button>
                 </div>
             </div>
         );
@@ -560,6 +613,8 @@ class Home extends Component {
 
     openPanel(e) {
         let type = e.target.value;
+        //console.log(type);
+        this.setState({ data: type });
         if (type === 'post-day') {
             this.setState({ graphPanel: this.showPostDayGraph(type), showGraphPanel: true });
         }
@@ -591,11 +646,16 @@ class Home extends Component {
         this.setState({ graphPanel: null, showGraphPanel: false });
     }
 
-    saveGraph() {
+    saveGraph(e) {
+
+        let type = e;
+        console.log(e);
         let graphsObj = {
             graphs: this.state.graphs
         };
-        graphsObj.graphs.push(
+
+        graphsObj.graphs.push(e);
+        /* graphsObj.graphs.push(
             <div style={{ padding: "10px" }}>
                 <img alt="graph" src={require('../images/dummygraph.jpg')} />
             </div>
@@ -607,7 +667,19 @@ class Home extends Component {
                 console.log(response);
             }).catch(err => {
                 console.log(err);
+            })  */
+
+
+        this.setState({ graphs: graphsObj.graphs });
+        console.log(this.state.user);
+        app.put('/api/graphs/' + JSON.parse(localStorage.getItem('user'))._id, graphsObj)
+            .then(response => {
+                console.log(response);
+            }).catch(err => {
+                console.log(err);
             })
+
+
     }
 
 
@@ -630,7 +702,7 @@ class Home extends Component {
                     width: "100%", height: "100%"
                 }}>
                     <div style={{ width: "15%", minWidth: "150px", backgroundColor: "rgb(147, 159, 156)", height: "100%" }}>
-                        <Nav style={{ width: "100%", height: "100%" }}>
+                        <Nav style={{ width: "100%" }}>
                             <div style={{ float: "center", width: "100%" }}>
                                 <p style={{
                                     textTransform: "uppercase",
@@ -752,7 +824,7 @@ class Home extends Component {
                     <div style={{
 
                     }}>
-                        {this.state.graphs}
+                        {this.state.displaySavedGraphs}
                     </div>
                 </div>
             </div >
