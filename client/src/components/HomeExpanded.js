@@ -101,6 +101,7 @@ class Home extends Component {
                         linkedin: user.data.user.li,
                         instagram: user.data.user.ig
                     },
+                    graphs: user.data.user.graphs,
                     selected: localStorage.getItem('selected'),
                     buttons: this.showButtons(user.data.user),
                     displaySavedGraphs: this.showSavedGraphs(user.data.user.graphs)
@@ -655,19 +656,7 @@ class Home extends Component {
         };
 
         graphsObj.graphs.push(e);
-        /* graphsObj.graphs.push(
-            <div style={{ padding: "10px" }}>
-                <img alt="graph" src={require('../images/dummygraph.jpg')} />
-            </div>
-        )
-        this.setState({ graphs: graphsObj.graphs });
-        localStorage.setItem('graphs', JSON.stringify(graphsObj));
-        app.put('/api/graphs/' + this.state.user._id, this.state.graphs)
-            .then(response => {
-                console.log(response);
-            }).catch(err => {
-                console.log(err);
-            })  */
+        console.log(graphsObj);
 
 
         this.setState({ graphs: graphsObj.graphs });
@@ -679,7 +668,7 @@ class Home extends Component {
                 console.log(err);
             })
 
-
+        window.location.href = '/homeExpanded/' + JSON.parse(localStorage.getItem('user'))._id;
     }
 
 
